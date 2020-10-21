@@ -1,117 +1,93 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import React, { useState } from "react";
 
-import React from "react";
+// import all the components we are going to use
 import {
 	SafeAreaView,
-	StyleSheet,
-	ScrollView,
-	View,
 	Text,
-	StatusBar
+	View,
+	StyleSheet,
+	TextInput,
+	TouchableOpacity
 } from "react-native";
 
-import {
-	Header,
-	LearnMoreLinks,
-	Colors,
-	DebugInstructions,
-	ReloadInstructions
-} from "react-native/Libraries/NewAppScreen";
+import QRCode from "react-native-qrcode-svg";
 
-const App: () => React$Node = () => {
+const App = () => {
+	const [inputText, setInputText] = useState("");
+	const [qrvalue, setQrvalue] = useState("");
+	
 	return (
-		<>
-			<StatusBar barStyle='dark-content' />
-			<SafeAreaView>
-				<ScrollView
-					contentInsetAdjustmentBehavior='automatic'
-					style={styles.scrollView}>
-					<Header />
-					{global.HermesInternal == null ? null : (
-						<View style={styles.engine}>
-							<Text style={styles.footer}>Engine: Hermes</Text>
-						</View>
-					)}
-					<View style={styles.body}>
-						<View style={styles.sectionContainer}>
-							<Text style={styles.sectionTitle}>Step One</Text>
-							<Text style={styles.sectionDescription}>
-								Edit{" "}
-								<Text style={styles.highlight}>App.js</Text> to
-								change this screen and then come back to see
-								your edits.
-							</Text>
-						</View>
-						<View style={styles.sectionContainer}>
-							<Text style={styles.sectionTitle}>
-								See Your Changes
-							</Text>
-							<Text style={styles.sectionDescription}>
-								<ReloadInstructions />
-							</Text>
-						</View>
-						<View style={styles.sectionContainer}>
-							<Text style={styles.sectionTitle}>Debug</Text>
-							<Text style={styles.sectionDescription}>
-								<DebugInstructions />
-							</Text>
-						</View>
-						<View style={styles.sectionContainer}>
-							<Text style={styles.sectionTitle}>Learn More</Text>
-							<Text style={styles.sectionDescription}>
-								Read the docs to discover what to do next:
-							</Text>
-						</View>
-						<LearnMoreLinks />
-					</View>
-				</ScrollView>
-			</SafeAreaView>
-		</>
+		<SafeAreaView style={{ flex: 1 }}>
+			<View style={styles.container}>
+				<Text style={styles.titleStyle}>
+					Generate QR Code
+				</Text>
+				<QRCode
+					// Value
+					value={qrvalue ? qrvalue : "NA"}
+					size={250}
+					color='black'
+					backgroundColor='white'
+				/>
+				<Text style={styles.textStyle}>
+					Insert any value to generate QR code
+				</Text>
+				<TextInput
+					style={styles.textInputStyle}
+					onChangeText={inputText => setInputText(inputText)}
+					placeholder='Enter Any Value'
+					value={inputText}
+				/>
+				<TouchableOpacity
+					style={styles.buttonStyle}
+					onPress={() => setQrvalue(inputText)}>
+					<Text style={styles.buttonTextStyle}>Generate QR Code</Text>
+				</TouchableOpacity>
+			</View>
+		</SafeAreaView>
 	);
 };
 
 const styles = StyleSheet.create({
-	scrollView: {
-		backgroundColor: Colors.lighter
+	container: {
+		flex: 1,
+		backgroundColor: "white",
+		justifyContent: "center",
+		alignItems: "center",
+		textAlign: "center",
+		padding: 10
 	},
-	engine: {
-		position: "absolute",
-		right: 0
+	titleStyle: {
+		fontSize: 20,
+		textAlign: "center",
+		margin: 10
 	},
-	body: {
-		backgroundColor: Colors.white
+	textStyle: {
+		textAlign: "center",
+		margin: 10
 	},
-	sectionContainer: {
-		marginTop: 32,
-		paddingHorizontal: 24
+	textInputStyle: {
+		flexDirection: "row",
+		height: 40,
+		marginTop: 20,
+		marginLeft: 35,
+		marginRight: 35,
+		margin: 10
 	},
-	sectionTitle: {
-		fontSize: 24,
-		fontWeight: "600",
-		color: Colors.black
+	buttonStyle: {
+		backgroundColor: "#51D8C7",
+		borderWidth: 0,
+		color: "#FFFFFF",
+		borderColor: "#51D8C7",
+		alignItems: "center",
+		borderRadius: 5,
+		marginTop: 30,
+		padding: 10
 	},
-	sectionDescription: {
-		marginTop: 8,
-		fontSize: 18,
-		fontWeight: "400",
-		color: Colors.dark
-	},
-	highlight: {
-		fontWeight: "700"
-	},
-	footer: {
-		color: Colors.dark,
-		fontSize: 12,
-		fontWeight: "600",
-		padding: 4,
-		paddingRight: 12,
-		textAlign: "right"
+	buttonTextStyle: {
+		color: "#FFFFFF",
+		paddingVertical: 10,
+		fontSize: 16
 	}
 });
 
