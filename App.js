@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 // import all the components we are going to use
 import {
@@ -8,23 +8,21 @@ import {
 	StyleSheet,
 	TextInput,
 	TouchableOpacity
-} from "react-native";
+} from 'react-native';
 
-import QRCode from "react-native-qrcode-svg";
+import QRCode from 'react-native-qrcode-svg';
 
 const App = () => {
-	const [inputText, setInputText] = useState("");
-	const [qrvalue, setQrvalue] = useState("");
-	
+	const [inputText, setInputText] = useState('');
+	const [qrvalue, setQrvalue] = useState('');
+
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
 			<View style={styles.container}>
-				<Text style={styles.titleStyle}>
-					Generate QR Code
-				</Text>
+				<Text style={styles.titleStyle}>Generate QR Code</Text>
 				<QRCode
 					// Value
-					value={qrvalue ? qrvalue : "NA"}
+					value={qrvalue ? qrvalue : 'NA'}
 					size={250}
 					color='black'
 					backgroundColor='white'
@@ -51,23 +49,23 @@ const App = () => {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: "white",
-		justifyContent: "center",
-		alignItems: "center",
-		textAlign: "center",
+		backgroundColor: 'white',
+		justifyContent: 'center',
+		alignItems: 'center',
+		textAlign: 'center',
 		padding: 10
 	},
 	titleStyle: {
 		fontSize: 20,
-		textAlign: "center",
+		textAlign: 'center',
 		margin: 10
 	},
 	textStyle: {
-		textAlign: "center",
+		textAlign: 'center',
 		margin: 10
 	},
 	textInputStyle: {
-		flexDirection: "row",
+		flexDirection: 'row',
 		height: 40,
 		marginTop: 20,
 		marginLeft: 35,
@@ -75,17 +73,17 @@ const styles = StyleSheet.create({
 		margin: 10
 	},
 	buttonStyle: {
-		backgroundColor: "#51D8C7",
+		backgroundColor: '#51D8C7',
 		borderWidth: 0,
-		color: "#FFFFFF",
-		borderColor: "#51D8C7",
-		alignItems: "center",
+		color: '#FFFFFF',
+		borderColor: '#51D8C7',
+		alignItems: 'center',
 		borderRadius: 5,
 		marginTop: 30,
 		padding: 10
 	},
 	buttonTextStyle: {
-		color: "#FFFFFF",
+		color: '#FFFFFF',
 		paddingVertical: 10,
 		fontSize: 16
 	}
