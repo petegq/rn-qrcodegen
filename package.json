@@ -1,5 +1,5 @@
 {
-	"name": "qrcodegenerator",
+	"name": "rn-qrcodegen",
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
